@@ -11,3 +11,5 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
     </ChakraProvider>
   </React.StrictMode>
 );
+
+document.getElementsByTagName("html")[0].setAttribute("dir", "rtl");

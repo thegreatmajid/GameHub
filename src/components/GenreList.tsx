@@ -1,4 +1,6 @@
+import { HStack, List, ListItem, Image, Text } from "@chakra-ui/react";
 import useGenres from "../hooks/useGenres";
+import getCroppedImageUrl from "../services/image-url";
 
 const GenreList = () => {
   const persianGenre: { [key: string]: string } = {
@@ -24,11 +26,20 @@ const GenreList = () => {
   };
   const { data, error, isLoading } = useGenres();
   return (
-    <ul>
+    <List>
       {data.map((genre) => (
-        <li key={genre.id}>{persianGenre[genre.slug]}</li>
+        <ListItem key={genre.id} paddingY={"5px"}>
+          <HStack>
+            <Image
+              boxSize={"32px"}
+              borderRadius={"10px"}
+              src={getCroppedImageUrl(genre.image_background)}
+            ></Image>
+            <Text fontSize="lg">{persianGenre[genre.slug]}</Text>
+          </HStack>
+        </ListItem>
       ))}
-    </ul>
+    </List>
   );
 };
 

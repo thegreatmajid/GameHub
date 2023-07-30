@@ -1,4 +1,4 @@
-import useGenres, { Genre } from "../hooks/useGenres";
+import useGenres from "../hooks/useGenres";
 
 const GenreList = () => {
   const persianGenre: { [key: string]: string } = {
@@ -22,10 +22,10 @@ const GenreList = () => {
     card: "کارتی",
     educational: "آموزشی",
   };
-  const { genres, error, isLoading } = useGenres();
+  const { data, error, isLoading } = useGenres();
   return (
     <ul>
-      {genres.map((genre) => (
+      {data.map((genre) => (
         <li key={genre.id}>{persianGenre[genre.slug]}</li>
       ))}
     </ul>

@@ -1,19 +1,40 @@
 import { Button, Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/react";
 import { BsChevronDown } from "react-icons/bs";
 
-const SortSelector = () => {
+interface Props {
+  onSelectSortOrder: (sortOrder: String) => void;
+  sortOrder: String;
+}
+
+const SortSelector = ({ sortOrder, onSelectSortOrder }: Props) => {
+  const sortOrders = [
+    { value: "", label: "ارتباط" },
+    { value: "-added", label: "تاریخ" },
+    { value: "name", label: "اسم" },
+    { value: "-released", label: "نشر" },
+    { value: "-metacritic", label: "محبوبیت" },
+    { value: "-rating", label: "امتیاز" },
+  ];
+
+  const currentSortOrder = sortOrders.find(
+    (order) => order.value === sortOrder
+  );
+
   return (
     <Menu>
       <MenuButton as={Button} rightIcon={<BsChevronDown></BsChevronDown>}>
-        مرتب شده براساس : ارتباط
+        مرتب شده براساس : {currentSortOrder?.label || "ارتباط"}
       </MenuButton>
       <MenuList>
-        <MenuItem>ارتباط</MenuItem>
-        <MenuItem>تاریخ</MenuItem>
-        <MenuItem>اسم</MenuItem>
-        <MenuItem>نشر</MenuItem>
-        <MenuItem>محبوبیت</MenuItem>
-        <MenuItem>امتیاز</MenuItem>
+        {sortOrders.map((order) => (
+          <MenuItem
+            onClick={() => onSelectSortOrder(order.value)}
+            key={order.value}
+            value={order.value}
+          >
+            {order.label}
+          </MenuItem>
+        ))}
       </MenuList>
     </Menu>
   );

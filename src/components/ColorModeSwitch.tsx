@@ -5,12 +5,12 @@ const ColorModeSwitch = () => {
 
   return (
     <HStack>
-      <Text>حالت تیره</Text>
       <Switch
         colorScheme="green"
         isChecked={colorMode === "dark"}
         onChange={toggleColorMode}
       ></Switch>
+      <Text whiteSpace="nowrap">حالت تیره</Text>
     </HStack>
   );
 };

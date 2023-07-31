@@ -1,8 +1,19 @@
-import { HStack, List, ListItem, Image, Text, Spinner } from "@chakra-ui/react";
-import useGenres from "../hooks/useGenres";
+import {
+  HStack,
+  List,
+  ListItem,
+  Image,
+  Spinner,
+  Button,
+} from "@chakra-ui/react";
+import useGenres, { Genre } from "../hooks/useGenres";
 import getCroppedImageUrl from "../services/image-url";
 
-const GenreList = () => {
+interface Props {
+  onSelectGenre: (genre: Genre) => void;
+}
+
+const GenreList = ({ onSelectGenre }: Props) => {
   const persianGenre: { [key: string]: string } = {
     action: "اکشن",
     indie: "ایندی",
@@ -40,7 +51,13 @@ const GenreList = () => {
               borderRadius={"10px"}
               src={getCroppedImageUrl(genre.image_background)}
             ></Image>
-            <Text fontSize="lg">{persianGenre[genre.slug]}</Text>
+            <Button
+              variant="link"
+              onClick={() => onSelectGenre(genre)}
+              fontSize="lg"
+            >
+              {persianGenre[genre.slug]}
+            </Button>
           </HStack>
         </ListItem>
       ))}

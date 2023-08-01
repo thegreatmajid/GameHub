@@ -14,28 +14,29 @@ interface Props {
   selectedGenre: Genre | null;
 }
 
+export const persianGenre: { [key: string]: string } = {
+  action: "اکشن",
+  indie: "ایندی",
+  adventure: "ماجراجویی",
+  "role-playing-games-rpg": "جهان باز",
+  strategy: "استراتژیک",
+  shooter: "شوتر",
+  casual: "معمولی",
+  simulation: "شبیه سازی",
+  puzzle: "پازل",
+  arcade: "آرکید",
+  platformer: "پلتفورمی",
+  "massively-multiplayer": "مولتی پلیر",
+  racing: "ماشین مسابقه",
+  sports: "ورزشی",
+  family: "خانوادگی",
+  fighting: "جنگی",
+  "board-games": "تخته ای",
+  card: "کارتی",
+  educational: "آموزشی",
+};
+
 const GenreList = ({ selectedGenre, onSelectGenre }: Props) => {
-  const persianGenre: { [key: string]: string } = {
-    action: "اکشن",
-    indie: "ایندی",
-    adventure: "ماجراجویی",
-    "role-playing-games-rpg": "جهان باز",
-    strategy: "استراتژیک",
-    shooter: "شوتر",
-    casual: "معمولی",
-    simulation: "شبیه سازی",
-    puzzle: "پازل",
-    arcade: "آرکید",
-    platformer: "پلتفورمی",
-    "massively-multiplayer": "مولتی پلیر",
-    racing: "ماشین مسابقه",
-    sports: "ورزشی",
-    family: "خانوادگی",
-    fighting: "جنگی",
-    "board-games": "تخته ای",
-    card: "کارتی",
-    educational: "آموزشی",
-  };
   const { data, error, isLoading } = useGenres();
 
   if (error) return null;

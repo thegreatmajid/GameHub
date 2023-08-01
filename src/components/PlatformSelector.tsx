@@ -8,23 +8,24 @@ interface Props {
   selectedPlatform: Platform | null;
 }
 
+export const persianPlatforms: { [key: string]: string } = {
+  pc: "کامپیوتر",
+  playstation: "پلی استیشن",
+  xbox: "ایکس باکس",
+  ios: "آی او اس",
+  android: "آندروید",
+  mac: "مک",
+  linux: "لینوکس",
+  nintendo: "نینتندو",
+  atari: "آتاری",
+  "commodore-amiga": "آمیگا",
+  sega: "سگا",
+  "3do": "3DO",
+  "neo-geo": "نعو جعو",
+  web: "وب",
+};
+
 const PlatformSelector = ({ onSelectPlatform, selectedPlatform }: Props) => {
-  const persianPlatforms: { [key: string]: string } = {
-    pc: "کامپیوتر",
-    playstation: "پلی استیشن",
-    xbox: "ایکس باکس",
-    ios: "آی او اس",
-    android: "آندروید",
-    mac: "مک",
-    linux: "لینوکس",
-    nintendo: "نینتندو",
-    atari: "آتاری",
-    "commodore-amiga": "آمیگا",
-    sega: "سگا",
-    "3do": "3DO",
-    "neo-geo": "Neo Geo",
-    web: "وب",
-  };
   const { data } = usePlatforms();
 
   return (

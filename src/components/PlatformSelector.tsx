@@ -33,7 +33,7 @@ const PlatformSelector = ({ onSelectPlatform, selectedPlatform }: Props) => {
         {selectedPlatform ? persianPlatforms[selectedPlatform.slug] : "پلتفورم"}
       </MenuButton>
       <MenuList>
-        {platformsQuery.data?.map((platform) => (
+        {platformsQuery.data?.results.map((platform) => (
           <MenuItem
             onClick={() => onSelectPlatform(platform)}
             key={platform.id}

@@ -26,7 +26,7 @@ export const persianPlatforms: { [key: string]: string } = {
 };
 
 const PlatformSelector = ({ onSelectPlatform, selectedPlatform }: Props) => {
-  const { data } = usePlatforms();
+  const platformsQuery = usePlatforms();
 
   return (
     <Menu>
@@ -34,7 +34,7 @@ const PlatformSelector = ({ onSelectPlatform, selectedPlatform }: Props) => {
         {selectedPlatform ? persianPlatforms[selectedPlatform.slug] : "پلتفورم"}
       </MenuButton>
       <MenuList>
-        {data.map((platform) => (
+        {platformsQuery.data?.map((platform) => (
           <MenuItem
             onClick={() => onSelectPlatform(platform)}
             key={platform.id}

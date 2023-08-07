@@ -38,11 +38,12 @@ export const persianGenre: { [key: string]: string } = {
 };
 
 const GenreList = ({ selectedGenre, onSelectGenre }: Props) => {
-  const { data, error, isLoading } = useGenres();
+  const genreQuery = useGenres();
 
-  if (error) return null;
+  if (genreQuery.error) return null;
 
-  if (isLoading) return <Spinner marginY={"20px"} boxSize={"100px"}></Spinner>;
+  if (genreQuery.isLoading)
+    return <Spinner marginY={"20px"} boxSize={"100px"}></Spinner>;
 
   return (
     <>
@@ -50,7 +51,7 @@ const GenreList = ({ selectedGenre, onSelectGenre }: Props) => {
         ژانر
       </Heading>
       <List>
-        {data.map((genre) => (
+        {genreQuery.data.map((genre) => (
           <ListItem key={genre.id} paddingY={"5px"}>
             <HStack>
               <Image

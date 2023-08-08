@@ -12,32 +12,32 @@ import getCroppedImageUrl from "../services/image-url";
 
 interface Props {
   onSelectGenre: (genre: Genre) => void;
-  selectedGenre: Genre | null;
+  selectedGenreID?: number;
 }
 
-export const persianGenre: { [key: string]: string } = {
-  action: "اکشن",
-  indie: "ایندی",
-  adventure: "ماجراجویی",
-  "role-playing-games-rpg": "جهان باز",
-  strategy: "استراتژیک",
-  shooter: "شوتر",
-  casual: "معمولی",
-  simulation: "شبیه سازی",
-  puzzle: "پازل",
-  arcade: "آرکید",
-  platformer: "پلتفورمی",
-  "massively-multiplayer": "مولتی پلیر",
-  racing: "ماشین مسابقه",
-  sports: "ورزشی",
-  family: "خانوادگی",
-  fighting: "جنگی",
-  "board-games": "تخته ای",
-  card: "کارتی",
-  educational: "آموزشی",
+export const persianGenre: { [key: number]: string } = {
+  4: "اکشن",
+  51: "ایندی",
+  3: "ماجراجویی",
+  5: "جهان باز",
+  10: "استراتژیک",
+  2: "شوتر",
+  40: "معمولی",
+  14: "شبیه سازی",
+  7: "پازل",
+  11: "آرکید",
+  83: "پلتفورمی",
+  59: "مولتی پلیر",
+  1: "ماشین مسابقه",
+  15: "ورزشی",
+  19: "خانوادگی",
+  6: "جنگی",
+  28: "تخته ای",
+  17: "کارتی",
+  34: "آموزشی",
 };
 
-const GenreList = ({ selectedGenre, onSelectGenre }: Props) => {
+const GenreList = ({ selectedGenreID, onSelectGenre }: Props) => {
   const genreQuery = useGenres();
 
   if (genreQuery.error) return null;
@@ -63,12 +63,12 @@ const GenreList = ({ selectedGenre, onSelectGenre }: Props) => {
               <Button
                 whiteSpace="normal"
                 textAlign="right"
-                fontWeight={genre.id === selectedGenre?.id ? "bold" : "light"}
+                fontWeight={genre.id === selectedGenreID ? "bold" : "light"}
                 variant="link"
                 onClick={() => onSelectGenre(genre)}
                 fontSize="lg"
               >
-                {persianGenre[genre.slug]}
+                {persianGenre[genre.id]}
               </Button>
             </HStack>
           </ListItem>

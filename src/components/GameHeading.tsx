@@ -9,12 +9,10 @@ interface Props {
 
 const GameHeading = ({ gameQuery }: Props) => {
   const heading = `بازی ${
-    gameQuery?.genre?.slug || gameQuery?.platform?.slug ? "های" : "ها"
+    gameQuery?.genreID || gameQuery?.platformID ? "های" : "ها"
   } 
-  ${gameQuery?.genre?.slug ? persianGenre[gameQuery.genre.slug] : ""}
-  ${
-    gameQuery?.platform?.slug ? persianPlatforms[gameQuery.platform.slug] : ""
-  }`;
+  ${gameQuery?.genreID ? persianGenre[gameQuery.genreID] : ""}
+  ${gameQuery?.platformID ? persianPlatforms[gameQuery.platformID] : ""}`;
 
   return (
     <Heading as="h1" marginY={10} fontSize={"5xl"}>

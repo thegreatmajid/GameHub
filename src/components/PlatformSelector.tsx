@@ -4,33 +4,33 @@ import usePlatforms, { Platform } from "../hooks/usePlatforms";
 
 interface Props {
   onSelectPlatform: (platform: Platform) => void;
-  selectedPlatform: Platform | null;
+  selectedPlatformID?: number;
 }
 
-export const persianPlatforms: { [key: string]: string } = {
-  pc: "کامپیوتر",
-  playstation: "پلی استیشن",
-  xbox: "ایکس باکس",
-  ios: "آی او اس",
-  android: "آندروید",
-  mac: "مک",
-  linux: "لینوکس",
-  nintendo: "نینتندو",
-  atari: "آتاری",
-  "commodore-amiga": "آمیگا",
-  sega: "سگا",
-  "3do": "3DO",
-  "neo-geo": "نعو جعو",
-  web: "وب",
+export const persianPlatforms: { [key: number]: string } = {
+  1: "کامپیوتر",
+  2: "پلی استیشن",
+  3: "ایکس باکس",
+  4: "آی او اس",
+  8: "آندروید",
+  5: "مک",
+  6: "لینوکس",
+  7: "نینتندو",
+  9: "آتاری",
+  10: "آمیگا",
+  11: "سگا",
+  12: "3DO",
+  13: "نعو جعو",
+  14: "وب",
 };
 
-const PlatformSelector = ({ onSelectPlatform, selectedPlatform }: Props) => {
+const PlatformSelector = ({ onSelectPlatform, selectedPlatformID }: Props) => {
   const platformsQuery = usePlatforms();
 
   return (
     <Menu>
       <MenuButton as={Button} rightIcon={<BsChevronDown></BsChevronDown>}>
-        {selectedPlatform ? persianPlatforms[selectedPlatform.slug] : "پلتفورم"}
+        {selectedPlatformID ? persianPlatforms[selectedPlatformID] : "پلتفورم"}
       </MenuButton>
       <MenuList>
         {platformsQuery.data?.results.map((platform) => (
@@ -38,7 +38,7 @@ const PlatformSelector = ({ onSelectPlatform, selectedPlatform }: Props) => {
             onClick={() => onSelectPlatform(platform)}
             key={platform.id}
           >
-            {persianPlatforms[platform.slug]}
+            {persianPlatforms[platform.id]}
           </MenuItem>
         ))}
       </MenuList>

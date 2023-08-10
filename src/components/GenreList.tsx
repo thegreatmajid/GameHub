@@ -7,13 +7,9 @@ import {
   Button,
   Heading,
 } from "@chakra-ui/react";
-import useGenres, { Genre } from "../hooks/useGenres";
+import useGenres from "../hooks/useGenres";
 import getCroppedImageUrl from "../services/image-url";
-
-interface Props {
-  onSelectGenre: (genre: Genre) => void;
-  selectedGenreID?: number;
-}
+import useGameQueryStore from "../store";
 
 export const persianGenre: { [key: number]: string } = {
   4: "اکشن",
@@ -37,7 +33,9 @@ export const persianGenre: { [key: number]: string } = {
   34: "آموزشی",
 };
 
-const GenreList = ({ selectedGenreID, onSelectGenre }: Props) => {
+const GenreList = () => {
+  const selectedGenreID = useGameQueryStore((s) => s.gameQuery.genreID);
+  const setGenreID = useGameQueryStore((s) => s.setGenreID);
   const genreQuery = useGenres();
 
   if (genreQuery.error) return null;
@@ -65,7 +63,7 @@ const GenreList = ({ selectedGenreID, onSelectGenre }: Props) => {
                 textAlign="right"
                 fontWeight={genre.id === selectedGenreID ? "bold" : "light"}
                 variant="link"
-                onClick={() => onSelectGenre(genre)}
+                onClick={() => setGenreID(genre.id)}
                 fontSize="lg"
               >
                 {persianGenre[genre.id]}

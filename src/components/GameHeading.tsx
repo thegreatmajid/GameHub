@@ -1,18 +1,15 @@
 import { Heading } from "@chakra-ui/react";
-import { GameQuery } from "../App";
 import { persianGenre } from "./GenreList";
 import { persianPlatforms } from "./PlatformSelector";
+import useGameQueryStore from "../store";
 
-interface Props {
-  gameQuery: GameQuery;
-}
+const GameHeading = () => {
+  const genreID = useGameQueryStore((s) => s.gameQuery.genreID);
+  const platformID = useGameQueryStore((s) => s.gameQuery.platformID);
 
-const GameHeading = ({ gameQuery }: Props) => {
-  const heading = `بازی ${
-    gameQuery?.genreID || gameQuery?.platformID ? "های" : "ها"
-  } 
-  ${gameQuery?.genreID ? persianGenre[gameQuery.genreID] : ""}
-  ${gameQuery?.platformID ? persianPlatforms[gameQuery.platformID] : ""}`;
+  const heading = `بازی ${genreID || platformID ? "های" : "ها"} 
+  ${genreID ? persianGenre[genreID] : ""}
+  ${platformID ? persianPlatforms[platformID] : ""}`;
 
   return (
     <Heading as="h1" marginY={10} fontSize={"5xl"}>

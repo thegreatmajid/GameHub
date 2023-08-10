@@ -1,11 +1,7 @@
 import { Button, Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/react";
 import { BsChevronDown } from "react-icons/bs";
-import usePlatforms, { Platform } from "../hooks/usePlatforms";
-
-interface Props {
-  onSelectPlatform: (platform: Platform) => void;
-  selectedPlatformID?: number;
-}
+import usePlatforms from "../hooks/usePlatforms";
+import useGameQueryStore from "../store";
 
 export const persianPlatforms: { [key: number]: string } = {
   1: "کامپیوتر",
@@ -24,7 +20,9 @@ export const persianPlatforms: { [key: number]: string } = {
   14: "وب",
 };
 
-const PlatformSelector = ({ onSelectPlatform, selectedPlatformID }: Props) => {
+const PlatformSelector = () => {
+  const selectedPlatformID = useGameQueryStore((s) => s.gameQuery.platformID);
+  const setPlatformID = useGameQueryStore((s) => s.setPlatformID);
   const platformsQuery = usePlatforms();
 
   return (
@@ -35,7 +33,7 @@ const PlatformSelector = ({ onSelectPlatform, selectedPlatformID }: Props) => {
       <MenuList>
         {platformsQuery.data?.results.map((platform) => (
           <MenuItem
-            onClick={() => onSelectPlatform(platform)}
+            onClick={() => setPlatformID(platform.id)}
             key={platform.id}
           >
             {persianPlatforms[platform.id]}

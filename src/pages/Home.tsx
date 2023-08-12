@@ -23,7 +23,7 @@ const HomePage = () => {
         </GridItem>
       </Show>
       <GridItem area={"main"}>
-        <Box paddingRight={5}>
+        <Box paddingRight={5} margin={5}>
           <GameHeading></GameHeading>
           <HStack spacing={5} marginBottom={5}>
             <PlatformSelector></PlatformSelector>
